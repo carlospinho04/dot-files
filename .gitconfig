@@ -28,6 +28,13 @@
 
 	grep = grep -Ii
 
+[user]
+  email = carlosdspinho@gmail.com
+  name = Carlos Pinho
+
+[github]
+  user = carlosdspinho@gmail.com
+
 [apply]
 
 	# Detect whitespace errors when applying a patch.
@@ -63,6 +70,7 @@
 	editor = nvim
 	quotepath = false
 	ignorecase = false
+
 
 [help]
 
