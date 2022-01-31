@@ -1,0 +1,82 @@
+[alias]
+
+	co = checkout
+
+	br = branch
+
+	# Add changes interactively
+	ad = add -p
+
+	# Stage all files
+	ada = add -A .
+
+	st = status -sb
+
+	ps = push -u origin HEAD
+
+	# Delete previous commit and leave changes from it unstaged
+	uc = reset --soft HEAD^
+
+	fe = fetch --force --prune --prune-tags --tags --recurse-submodules=yes --jobs=8 --progress
+
+	ca = commit --amend --no-edit
+
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch --all
+	remotes = remote --verbose
+
+	grep = grep -Ii
+
+[apply]
+
+	# Detect whitespace errors when applying a patch.
+	whitespace = fix
+
+[branch]
+
+	# Show most recently changed branches first.
+	sort = -committerdate
+
+[core]
+
+	# Use custom `.gitignore` and `.gitattributes`.
+	excludesfile = ~/.gitignore
+
+	# treat spaces before tabs and all kinds of trailing whitespace as an error.
+	# [default] trailing-space: looks for spaces at the end of a line
+	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+	# make `git rebase` safer on macos.
+	# more info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+
+	# prevent showing files whose names contain non-ascii symbols as unversioned.
+	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
+
+	# speed up commands involving untracked files such as `git status`.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
+	editor = nvim
+	quotepath = false
+	ignorecase = false
+
+[help]
+
+	# Automatically correct and execute mistyped commands.
+	autocorrect = 1
+
+[merge]
+
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+
+[push]
+
+	# https://git-scm.com/docs/git-config#git-config-pushdefault
+	default = simple
+	# Make `git push` push relevant annotated tags when pushing branches out.
+	followTags = true
