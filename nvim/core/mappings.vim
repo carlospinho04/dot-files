@@ -183,5 +183,5 @@ endfunction
 
 nnoremap <Leader>n :NvimTreeToggle<CR>
 nnoremap <Leader>a :Ack!<Space>
-nnoremap <Leader>u :UndotreeToggle<CR>
+nnoremap <Leader>u :MundoToggle<CR>
 nnoremap <Leader>ff <cmd>Telescope find_files<cr>

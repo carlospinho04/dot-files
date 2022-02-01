@@ -264,8 +264,8 @@ require("packer").startup({
 
     use({"chrisbra/unicode.vim", event = "VimEnter"})
 
-    -- UndoTree
-    use({'mbbill/undotree', event = "VimEnter"})
+    -- MUndo
+    use({'simnalamburt/vim-mundo', event = "VimEnter"})
 
     -- Additional powerful text object for vim, this plugin should be studied
     -- carefully to use its full power
