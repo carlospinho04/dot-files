@@ -120,3 +120,6 @@ source $ZSH/oh-my-zsh.sh
 [ -r "$HOME/.asdf/asdf.sh" ] && [ -f "$HOME/.asdf/asdf.sh" ] && source "$HOME/.asdf/asdf.sh"
 
 alias vim="nvim"
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
