@@ -315,6 +315,13 @@ require("packer").startup({
 
     use({ "cespare/vim-toml", ft = { "toml" }, branch = "main" })
 
+    use({"ms-jpq/coq_nvim", branch = "coq"})
+    use({"ms-jpq/coq.artifacts", branch = "artifacts"})
+    -- use ({"neoclide/coc.nvim", branch = 'release'})
+
+    -- Copilot
+    -- use({'github/copilot.vim', event = "VimEnter"})
+
     -- Edit text area in browser using nvim
     if vim.g.is_win or vim.g.is_mac then
       use({

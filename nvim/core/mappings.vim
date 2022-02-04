@@ -185,3 +185,11 @@ nnoremap <Leader>n :NvimTreeToggle<CR>
 nnoremap <Leader>a :Ack!<Space>
 nnoremap <Leader>u :MundoToggle<CR>
 nnoremap <Leader>ff <cmd>Telescope find_files<cr>
+
+" Auto imports for Python
+function PyPostSave()
+    execute "silent !tidy-imports --black --quiet --action REPLACE " . bufname("%")
+    execute "e"
+endfunction
+
+nnoremap <Leader>oip :call PyPostSave()<CR>

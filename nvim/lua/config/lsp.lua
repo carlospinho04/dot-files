@@ -1,6 +1,10 @@
 local api = vim.api
 local lsp = vim.lsp
 
+vim.g.coq_settings = {
+   auto_start = 'shut-up',
+}
+local coq = require "coq"
 local M = {}
 
 function M.show_line_diagnostics()
@@ -73,7 +77,24 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lspconfig = require("lspconfig")
 
-lspconfig.pylsp.setup({
+lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
+  on_attach = custom_attach,
+  settings = {
+    gopls = {
+      experimentalPostfixCompletions = true,
+		      analyses = {
+		        unusedparams = true,
+		        shadow = true,
+		     },
+		     staticcheck = true,
+    }
+  },
+  cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod", "gotmpl" }
+  -- root_dir = util.root_pattern("go.mod", ".git")
+}))
+
+lspconfig.pylsp.setup(coq.lsp_ensure_capabilities({
   on_attach = custom_attach,
   settings = {
     pylsp = {
@@ -91,7 +112,7 @@ lspconfig.pylsp.setup({
     debounce_text_changes = 200,
   },
   capabilities = capabilities,
-})
+}))
 
 -- lspconfig.pyright.setup{
 --   on_attach = custom_attach,
