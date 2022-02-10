@@ -26,9 +26,8 @@ local custom_attach = function(client, bufnr)
   -- Mappings.
   local opts = { noremap = true, silent = true }
   buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "<C-]>", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_set_keymap("n", "<space>k", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   buf_set_keymap("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
@@ -94,24 +93,41 @@ lspconfig.gopls.setup(coq.lsp_ensure_capabilities({
   -- root_dir = util.root_pattern("go.mod", ".git")
 }))
 
-lspconfig.pylsp.setup(coq.lsp_ensure_capabilities({
-  on_attach = custom_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        pylint = { enabled = true, executable = "pylint" },
-        pyflakes = { enabled = false },
-        pycodestyle = { enabled = false },
-        jedi_completion = { fuzzy = true },
-        pyls_isort = { enabled = true },
-        pylsp_mypy = { enabled = true },
-      },
+-- lspconfig.pylsp.setup(coq.lsp_ensure_capabilities({
+--   on_attach = custom_attach,
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         pylint = { enabled = true, executable = "pylint" },
+--         pyflakes = { enabled = false },
+--         pycodestyle = { enabled = false },
+--         jedi_completion = { fuzzy = true },
+--         pyls_isort = { enabled = true },
+--         pylsp_mypy = { enabled = true },
+--       },
+--     },
+--   },
+--   flags = {
+--     debounce_text_changes = 200,
+--   },
+--   capabilities = capabilities,
+-- }))
+
+lspconfig.pyright.setup(coq.lsp_ensure_capabilities({
+    on_attach = custom_attach,
+    capabilities = capabilities,
+    cmd = {"pyright-langserver", "--stdio"},
+    filetypes = {"python"},
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          useLibraryCodeForTypes = true
+        }
+      }
     },
-  },
-  flags = {
-    debounce_text_changes = 200,
-  },
-  capabilities = capabilities,
+    single_file_support = true
 }))
 
 -- lspconfig.pyright.setup{
